@@ -8,7 +8,7 @@ function usage() {
 }
 
 function usageExit(err: string) {
-    console.error(err);
+    console.error(err + "\n");
     usage();
     process.exit(1);
 }
@@ -23,10 +23,9 @@ Examples:
         {"page":0, "x":100, "y":400, "size":20, "text":"this is test3"}
     ]'
 
-Specify your own font:
-    You can specify font path with the environment variable PDFGEN_FONT.
+You can specify font path with the environment variable PDFGEN_FONT.
 
-      export PDFGEN_FONT=/usr/share/fonts/ipa-gothic/ipag.ttf
+    export PDFGEN_FONT=/usr/share/fonts/ipa-gothic/ipag.ttf
 `);
     process.exit(1);
 }
