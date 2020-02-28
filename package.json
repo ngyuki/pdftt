@@ -31,6 +31,8 @@
     "@types/node": "^13.7.6"
   },
   "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
 }

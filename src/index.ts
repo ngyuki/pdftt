@@ -1,9 +1,9 @@
-import { readFileSync } from 'fs'
+import fs from 'fs'
 import { PDFDocument, StandardFonts, rgb, PDFPage, PDFFont } from 'pdf-lib'
 import fontkit from '@pdf-lib/fontkit'
 
 const fontBytes = process.env.PDFGEN_FONT && process.env.PDFGEN_FONT.length
-    ? readFileSync(process.env.PDFGEN_FONT)
+    ? fs.readFileSync(process.env.PDFGEN_FONT)
     : StandardFonts.TimesRoman;
 
 export interface Props {
