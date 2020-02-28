@@ -1,12 +1,20 @@
-const fs = require('fs');
-const { PDFDocument, StandardFonts, rgb } = require('pdf-lib');
-const fontkit = require('@pdf-lib/fontkit');
+import { readFileSync } from 'fs'
+import { PDFDocument, StandardFonts, rgb, PDFPage, PDFFont } from 'pdf-lib'
+import fontkit from '@pdf-lib/fontkit'
 
 const fontBytes = process.env.PDFGEN_FONT && process.env.PDFGEN_FONT.length
-    ? fs.readFileSync(process.env.PDFGEN_FONT)
+    ? readFileSync(process.env.PDFGEN_FONT)
     : StandardFonts.TimesRoman;
 
-module.exports = async function (input, propsList){
+export interface Props {
+    page: number,
+    x: number,
+    y: number,
+    size: number,
+    text: string,
+}
+
+export async function pdftt (input: Buffer, propsList: Array<Props>){
     const pdfDoc = await PDFDocument.load(input)
     pdfDoc.registerFontkit(fontkit);
     const font = await pdfDoc.embedFont(fontBytes);
@@ -17,7 +25,7 @@ module.exports = async function (input, propsList){
     return await pdfDoc.save();
 };
 
-function inject(pages, font, props) {
+function inject(pages: PDFPage[], font: PDFFont, props: Props) {
     console.error(props);
     const page = pages[props.page];
     page.drawText(props.text, {
