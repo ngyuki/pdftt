@@ -1,7 +1,5 @@
 FROM node:alpine
 
-MAINTAINER Toshiyuki Goto <ngyuki.jp@gmail.com>
-
 RUN wget https://noto-website-2.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip -O /tmp/NotoSansCJKjp-hinted.zip &&\
     unzip /tmp/NotoSansCJKjp-hinted.zip -d /tmp &&\
     mkdir -pv /usr/share/fonts/noto/ &&\
