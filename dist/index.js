@@ -22,7 +22,6 @@ async function pdftt(input, propsList) {
 exports.pdftt = pdftt;
 ;
 function inject(pages, font, props) {
-    console.error(props);
     const page = pages[props.page];
     page.drawText(props.text, {
         x: props.x,
